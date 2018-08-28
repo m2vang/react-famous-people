@@ -2,31 +2,29 @@ import React, { Component } from 'react';
 
 class Person extends Component {
     constructor() {
-        super();
-        this.state = {name: '', role: ''};
-        this.handleName = this.handleName.bind(this);
-        this.handleRole = this.handleRole.bind(this);
-
+        super();   
+        this.state = { star:{} };
     }
 
-    handleName = (event) => {
-        this.setState({name: event.target.value});
+    handleChange = (event) => {
+        let star = this.state.star;
+        let name = event.target.name;
+        let value = event.target.value;
+        star[name] = value;
+        this.setState({star});
     }
 
-    handleRole = (event) => {
-        this.setState({ role: event.target.value });
-    }
 
     displayOnConsole = () => {
-        console.log('Famous person:', this.state.name, 'Role:', this.state.role);
-
+        // console.log('Famous person:', this.state.name, 'Role:', this.state.role);
+        console.log(this.state.star);
     }
 
     render() {
         return (
             <div>
-                <input onChange={this.handleName} />
-                <input onChange={this.handleRole} />
+                <input name="name" onChange={this.handleChange} />
+                <input name="role" onChange={this.handleChange} />
                 <br />
                 This person, {this.state.name}, was famous for {this.state.role}!
                 <br />
